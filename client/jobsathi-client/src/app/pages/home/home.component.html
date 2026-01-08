@@ -1,0 +1,318 @@
+<!-- ================= HERO ================= -->
+<header class="hero">
+  <div class="hero-bg" aria-hidden="true"></div>
+
+  <div class="hero-inner container" >
+    <div class="hero-left">
+      <!-- Inline SVG emblem logo -->
+      <div class="logo-wrap" aria-hidden="false">
+        <svg
+          class="logo-svg"
+          viewBox="0 0 120 120"
+          xmlns="http://www.w3.org/2000/svg"
+          role="img"
+          aria-label="JobSathi logo"
+        >
+          <defs>
+            <linearGradient id="g1" x1="0" x2="1">
+              <stop offset="0" stop-color="#0d47a1" />
+              <stop offset="1" stop-color="#1976d2" />
+            </linearGradient>
+            <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+              <feGaussianBlur stdDeviation="3" result="blur" />
+              <feMerge>
+                <feMergeNode in="blur" />
+                <feMergeNode in="SourceGraphic" />
+              </feMerge>
+            </filter>
+          </defs>
+
+          <!-- shield emblem -->
+          <g class="emblem" filter="url(#glow)" >
+            <path
+              class="shield"
+              d="M60 8 L100 24 L100 68 C100 92 76 108 60 116 C44 108 20 92 20 68 L20 24 Z"
+              fill="url(#g1)"
+            />
+            <rect
+              x="36"
+              y="38"
+              width="48"
+              height="44"
+              rx="6"
+              fill="#fff"
+              opacity="0.06"
+            />
+            <text
+              x="60"
+              y="74"
+              text-anchor="middle"
+              font-family="Inter, Arial"
+              font-weight="800"
+              font-size="34"
+              fill="#fff"
+              class="logo-text"
+            >
+              JS
+            </text>
+            <circle cx="86" cy="28" r="6" fill="#ff9800" opacity="0.95" />
+          </g>
+        </svg>
+      </div>
+
+      <div class="hero-copy">
+        <h1 class="hero-title" >JobSathi – Government Job Portal</h1>
+        <p class="hero-sub" >Your Trusted Government Job Partner</p>
+
+        <div class="hero-ctas">
+          <a routerLink="/jobs" class="btn btn-primary" style="text-align: center;">Explore Jobs</a>
+          <a href="#subscribe" class="btn btn-ghost" style="text-align: center;">Get Alerts</a>
+        </div>
+
+        <!-- UI-only search bar (no ngModel, no form binding) -->
+        <div class="hero-search">
+  <input
+    type="text"
+    class="search-input"
+    placeholder="Job keyword (e.g. Police, Clerk)"
+    [(ngModel)]="searchKeywordInput"
+  />
+
+  <input
+    type="text"
+    class="search-input"
+    placeholder="Locations"
+    [(ngModel)]="searchLocationInput"
+  />
+   <button class="search-btn" type="button" (click)="onSearch()">Search</button>
+</div>
+      </div>
+    </div>
+
+    <div class="hero-right" aria-hidden="true">
+      <!-- subtle decorative shapes for depth -->
+      <svg viewBox="0 0 300 200" class="decoration">
+        <defs>
+          <linearGradient id="lg2" x1="0" x2="1">
+            <stop offset="0" stop-color="#e3f2fd" stop-opacity="0.06" />
+            <stop offset="1" stop-color="#fff" stop-opacity="0.02" />
+          </linearGradient>
+        </defs>
+        <rect x="10" y="10" width="280" height="180" rx="14" fill="url(#lg2)" />
+      </svg>
+    </div>
+  </div>
+
+  <div class="marquee">
+    <div class="marquee-track">
+      <span *ngFor="let note of notifications">
+        {{ note }} &nbsp;&nbsp;&nbsp;
+      </span>
+    </div>
+  </div>
+</header>
+
+<!-- Animated Stats (reads existing bindings, animates visually) -->
+<!-- <section class="hero-stats" aria-hidden="false">
+  <div class="stats-grid container">
+    <div class="stat" *ngFor="let label of getStatLabels()">
+      <div class="label">{{ label }}</div>
+      <div class="value">
+        <span class="count">{{
+          label === "Total Jobs" ? totalJobs : getCategoryCount(label)
+        }}</span>
+      </div>
+    </div>
+  </div>
+</section> -->
+
+<!-- Category counts (name + dynamic count) -->
+
+<!-- ================= BANNER ================= -->
+<section
+  class="banner-wrapper"
+  (mouseenter)="onBannerMouseEnter()"
+  (mouseleave)="onBannerMouseLeave()"
+>
+  <div
+    class="banner-viewport"
+    *ngIf="banners.length; else bannerSkeleton"
+    (touchstart)="onTouchStart($event)"
+    (touchend)="onTouchEnd($event)"
+  >
+    <div
+      class="banner-track"
+      [style.transform]="'translateX(-' + currentBanner * 100 + '%)'"
+    >
+      <div class="banner-slide" *ngFor="let b of banners">
+        <img [src]="b.imageUrl" [alt]="b.title" />
+      </div>
+    </div>
+
+    <div class="banner-dots">
+      <span
+        *ngFor="let _ of banners; let i = index"
+        (click)="goToBanner(i)"
+        [class.active]="i === currentBanner"
+      ></span>
+    </div>
+  </div>
+
+  <ng-template #bannerSkeleton>
+    <div class="skeleton skeleton-banner"></div>
+  </ng-template>
+</section>
+
+  <h4 style="text-align: center;">Latest verified Sarkari Naukri updates</h4>
+
+<!-- LIST WRAPPER -->
+<section id="jobs" class="jobs-section">
+
+  <div *ngIf="loading" class="status">Loading jobs…</div>
+
+  <div *ngIf="!loading && paginatedJobs.length === 0" class="status">
+    No jobs found
+  </div>
+
+  <!-- JOB LIST -->
+  <div class="job-list">
+    
+    <div
+  class="job-row"
+  *ngFor="let job of paginatedJobs | jobSearch: searchKeyword : searchLocation"
+>
+
+
+      <!-- LEFT: LOGO -->
+      <div class="job-logo">
+        <img
+          [src]="job.logo || 'assets/icons/govt.png'"
+          alt="org"
+        />
+      </div>
+
+      <!-- CENTER: DETAILS -->
+      <div class="job-info">
+      <h3 class="job-title" (click)="openJobModal(job)" style="cursor:pointer">
+  {{ job.title }}
+  <span *ngIf="isNewJob(job)" class="badge new animate">NEW</span>
+  <span *ngIf="isClosingSoon(job)" class="badge closing">Closing Soon</span>
+</h3>
+
+
+
+        <p class="job-meta">
+          {{ job.organization }} • {{ job.category }}
+        </p>
+
+        <p class="job-sub">
+          Qualification: {{ job.qualification || 'As per notification' }} |
+          Location: {{ job.location || 'India' }}
+        </p>
+      </div>
+
+      <!-- RIGHT: ACTIONS -->
+      <div class="job-actions">
+        <div class="last-date">
+          Last Date<br />
+          <strong>{{ job.lastDate | date:'dd MMM yyyy' }}</strong>
+        </div>
+
+        <a
+          class="btn apply"
+          [href]="job.applyLink"
+          target="_blank"
+        >
+          Apply
+        </a>
+        <button class="btn icon" (click)="shareJob(job)">🔗</button>
+        <button class="btn icon" (click)="remindMe(job)">⏰</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- PAGINATION -->
+  <div class="pagination" *ngIf="totalPages > 1">
+    <button (click)="goToPage(currentPage - 1)" [disabled]="currentPage === 1">
+      «
+    </button>
+
+    <button
+      *ngFor="let p of [].constructor(totalPages); let i = index"
+      (click)="goToPage(i + 1)"
+      [class.active]="currentPage === i + 1"
+    >
+      {{ i + 1 }}
+    </button>
+
+    <button
+      (click)="goToPage(currentPage + 1)"
+      [disabled]="currentPage === totalPages"
+    >
+      »
+    </button>
+  </div>
+<!-- ================= JOB DETAILS MODAL ================= -->
+<div class="job-modal-backdrop" *ngIf="selectedJob" (click)="closeJobModal()"></div>
+
+<div class="job-modal" *ngIf="selectedJob">
+  <button class="close-btn" (click)="closeJobModal()">×</button>
+
+  <h2>{{ selectedJob.title }}</h2>
+  <p class="org">{{ selectedJob.organization }} • {{ selectedJob.location }}</p>
+
+  <p><strong>Qualification:</strong> {{ selectedJob.qualification }}</p>
+  <p><strong>Last Date:</strong> {{ selectedJob.lastDate | date:'dd MMM yyyy' }}</p>
+
+  <p class="desc">{{ selectedJob.description }}</p>
+
+  <div class="modal-actions">
+    <a
+      class="btn apply"
+      [href]="selectedJob.applyLink"
+      target="_blank"
+    >
+      Apply Now
+    </a>
+
+    <button class="btn icon" (click)="shareJob(selectedJob)">🔗</button>
+    <button class="btn icon" (click)="remindMe(selectedJob)">⏰</button>
+  </div>
+</div>
+
+</section>
+
+
+
+
+<!-- ================= SUBSCRIBE ================= -->
+<section id="subscribe" class="subscribe-strip">
+  <div class="subscribe-inner">
+    <h3 style="text-align: center;">Get Daily Government Job Alerts</h3>
+
+    <div class="subscribe-form">
+      <div
+        class="input-wrap"
+        [class.valid]="emailValid"
+        [class.invalid]="email && !emailValid"
+      >
+        <input
+        style="width: 370px;"
+          type="email"
+          [(ngModel)]="email"
+          (ngModelChange)="validateEmail()"
+          placeholder="Enter your email"
+        />
+      </div>
+
+      <button
+      style="width: 200px;"
+        class="subscribe-btn"
+        [disabled]="!emailValid || submitting"
+        (click)="subscribe()"
+      >
+        Subscribe Now
+      </button>
+    </div>
+  </div>
+</section>

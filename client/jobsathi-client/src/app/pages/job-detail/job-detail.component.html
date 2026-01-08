@@ -1,0 +1,32 @@
+<div class="job-detail-page">
+  <!-- Back Button -->
+  <button class="back-btn" onclick="history.back()">← Back to Jobs</button>
+
+  <!-- Job Card -->
+  <div *ngIf="job" class="job-detail-card">
+    <h1 class="job-title">{{ job.title }}</h1>
+    <p class="job-org">{{ job.organization }}</p>
+
+    <div class="meta-grid">
+      <div><b>📍 Location:</b> {{ job.location }}</div>
+      <div><b>🗓 Last Date:</b> {{ job.lastDate | date }}</div>
+      <div><b>🎓 Qualification:</b> {{ job.qualification }}</div>
+      <div><b>📂 Category:</b> {{ job.category }}</div>
+    </div>
+
+    <hr />
+
+    <h3>Job Description</h3>
+    <p class="description">
+      {{ job.description }}
+    </p>
+
+    <div class="actions">
+      <button class="apply-btn" (click)="apply()">Apply Now</button>
+      <button class="share-btn" (click)="share()">Share</button>
+    </div>
+  </div>
+
+  <!-- Loading -->
+  <div *ngIf="!job" class="loading">Loading job details...</div>
+</div>

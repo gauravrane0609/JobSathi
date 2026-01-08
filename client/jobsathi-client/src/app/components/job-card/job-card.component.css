@@ -1,0 +1,137 @@
+:host {
+  display: block;
+}
+
+/* ================= CARD ================= */
+
+.job-card {
+  background: #ffffff;
+  border-radius: 14px;
+  padding: 16px 18px;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 10px 26px rgba(2, 6, 23, 0.06);
+  transition: transform 180ms ease, box-shadow 180ms ease;
+}
+
+.job-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 18px 40px rgba(2, 6, 23, 0.1);
+}
+
+/* ================= TOP ================= */
+
+.job-card-top {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+}
+
+/* Logo */
+.job-avatar {
+  width: 56px;
+  height: 56px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #eef2ff, #f8fafc);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+}
+
+/* Content */
+.job-main {
+  flex: 1;
+}
+
+.job-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: #0b3b66;
+  margin-bottom: 4px;
+}
+
+.job-org {
+  font-size: 13px;
+  color: #6b7280;
+}
+
+.job-qualification {
+  font-size: 13px;
+  color: #334155;
+  margin: 6px 0;
+}
+
+.job-meta-row {
+  display: flex;
+  gap: 6px;
+  font-size: 13px;
+  color: #475569;
+}
+
+/* ================= SIDE ================= */
+
+.job-side {
+  min-width: 130px;
+  text-align: right;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.job-deadline {
+  font-size: 13px;
+  color: #dc2626;
+}
+
+.job-actions {
+  display: flex;
+  gap: 6px;
+  justify-content: flex-end;
+}
+
+.job-actions button {
+  padding: 7px 10px;
+  border-radius: 8px;
+  border: none;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.job-actions .apply {
+  background: #0d47a1;
+  color: #fff;
+}
+
+.job-actions .details {
+  background: #fff;
+  border: 1px solid #dbeafe;
+  color: #0d47a1;
+}
+
+.job-actions .share {
+  background: #eef2ff;
+  color: #0d47a1;
+}
+
+/* ================= MOBILE ================= */
+
+@media (max-width: 640px) {
+  .job-card-top {
+    flex-direction: column;
+  }
+
+  .job-side {
+    width: 100%;
+    text-align: left;
+    align-items: flex-start;
+  }
+
+  .job-actions {
+    justify-content: flex-start;
+  }
+
+  .job-avatar {
+    display: none;
+  }
+}

@@ -1,0 +1,80 @@
+<div class="admin-page">
+  <h2>Manage Jobs</h2>
+
+  <!-- JOB FORM -->
+  <form class="job-form" (ngSubmit)="submit()">
+    <input placeholder="Job Title" [(ngModel)]="form.title" name="title" required />
+
+    <input placeholder="Category" [(ngModel)]="form.category" name="category" />
+
+    <input
+      placeholder="Qualification"
+      [(ngModel)]="form.qualification"
+      name="qualification"
+    />
+
+    <textarea
+      placeholder="Job Description"
+      [(ngModel)]="form.description"
+      name="description"
+    ></textarea>
+
+    <input
+      placeholder="Organization"
+      [(ngModel)]="form.organization"
+      name="organization"
+    />
+
+    <input placeholder="Location" [(ngModel)]="form.location" name="location" />
+
+    <input type="date" [(ngModel)]="form.lastDate" name="lastDate" />
+
+    <!-- ✅ FIXED HERE -->
+    <input
+      type="text"
+      placeholder="Organization Logo URL"
+      [(ngModel)]="form.logo"
+      name="logo"
+    />
+
+    <input
+      placeholder="Apply Link (URL)"
+      [(ngModel)]="form.applyLink"
+      name="applyLink"
+    />
+
+    <small style="display: block; color: #666; margin-bottom: 8px">
+      (If empty, client will fallback to existing 'link' field)
+    </small>
+
+    <button type="submit">
+      {{ editingJob ? 'Update Job' : 'Add Job' }}
+    </button>
+
+    <button type="button" *ngIf="editingJob" (click)="reset()">Cancel</button>
+  </form>
+
+  <!-- JOB TABLE -->
+  <table class="jobs-table">
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Category</th>
+        <th>Last Date</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr *ngFor="let job of jobs">
+        <td>{{ job.title }}</td>
+        <td>{{ job.category }}</td>
+        <td>{{ job.lastDate | date }}</td>
+        <td>
+          <button (click)="edit(job)">Edit</button>
+          <button class="danger" (click)="delete(job._id)">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

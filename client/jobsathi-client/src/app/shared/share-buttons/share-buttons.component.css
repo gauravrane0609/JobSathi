@@ -1,0 +1,12 @@
+.share-buttons {
+  display: flex;
+  gap: 8px;
+}
+.share-buttons button {
+  padding: 6px 10px;
+  border-radius: 6px;
+  border: 1px solid #e6eefc;
+  background: #fff;
+  color: #0b5ed7;
+  cursor: pointer;
+}

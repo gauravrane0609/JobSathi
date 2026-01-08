@@ -1,0 +1,48 @@
+<div class="page">
+  <div class="page-header">
+    <h1>Syllabus</h1>
+    <p>Official exam syllabus PDFs</p>
+  </div>
+
+  <div class="notice">
+    📘 Always refer to the official syllabus before preparation.
+  </div>
+  <app-category-filter
+    [categories]="categories"
+    [(selected)]="selectedCategory"
+    (selectedChange)="applyFilters()"
+  ></app-category-filter>
+  <div class="controls">
+    <input
+      placeholder="Search syllabus"
+      [(ngModel)]="search"
+      (input)="applyFilters()"
+    />
+  </div>
+
+  <app-loading-skeleton *ngIf="loading"></app-loading-skeleton>
+  <app-empty-state
+    *ngIf="!loading && visibleItems.length === 0"
+    message="No syllabus available"
+  ></app-empty-state>
+
+  <div class="card-grid">
+    <div class="card" *ngFor="let s of visibleItems">
+      <h3>{{ s.examName || s.title }}</h3>
+      <p>Category: {{ s.category }}</p>
+      <div class="actions">
+        <a [href]="s.pdfUrl" target="_blank" class="btn">View PDF</a>
+        <app-share-buttons
+          [title]="s.title || s.examName"
+          [url]="s.pdfUrl"
+        ></app-share-buttons>
+      </div>
+    </div>
+  </div>
+  <div
+    class="load-more"
+    *ngIf="!loading && visibleItems.length < publishedCount"
+  >
+    <button (click)="loadMore()">Load more</button>
+  </div>
+</div>

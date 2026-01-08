@@ -1,0 +1,61 @@
+<div class="admin-page">
+
+  <h2>Manage Banners / Posters</h2>
+
+  <!-- UPLOAD FORM -->
+  <div class="banner-form">
+
+    <input
+      type="text"
+      placeholder="Banner title"
+      [(ngModel)]="title"
+      name="title"
+    />
+
+    <input
+      type="text"
+      placeholder="Redirect link (optional)"
+      [(ngModel)]="link"
+      name="link"
+    />
+
+    <input type="file" accept="image/*" (change)="onFileChange($event)" />
+
+    <!-- IMAGE PREVIEW -->
+    <div class="preview" *ngIf="preview">
+      <img [src]="preview" />
+    </div>
+
+    <button (click)="upload()" [disabled]="loading">
+      {{ loading ? 'Uploading...' : 'Upload Banner' }}
+    </button>
+
+  </div>
+
+  <!-- BANNER LIST -->
+  <div class="banner-list">
+
+    <div class="banner-card" *ngFor="let b of banners">
+      <img [src]="b.imageUrl" />
+
+      <div class="info">
+        <h4>{{ b.title }}</h4>
+        <small *ngIf="b.link">{{ b.link }}</small>
+
+        <span
+          class="status"
+          [class.active]="b.active"
+          [class.inactive]="!b.active"
+        >
+          {{ b.active ? 'Active' : 'Disabled' }}
+        </span>
+      </div>
+
+      <button (click)="toggle(b)">
+        {{ b.active ? 'Disable' : 'Enable' }}
+      </button>
+    </div>
+
+  </div>
+
+</div>

@@ -1,0 +1,9 @@
+<aside class="admin-sidebar">
+  <nav>
+    <ul>
+      <li *ngFor="let l of links">
+        <a [routerLink]="l.path">{{ l.label }}</a>
+      </li>
+    </ul>
+  </nav>
+</aside>

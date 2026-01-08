@@ -1,0 +1,38 @@
+<div class="subscribers-page">
+  <h2>Subscribers</h2>
+
+  <div *ngIf="loading" class="status">Loading subscribers…</div>
+
+  <div *ngIf="error" class="error">{{ error }}</div>
+
+  <table *ngIf="!loading && subscribers.length">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Email</th>
+        <th>Subscribed At</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr *ngFor="let s of subscribers; let i = index">
+        <td>{{ i + 1 }}</td>
+        <td>{{ s.email }}</td>
+        <td>{{ s.createdAt | date: 'medium' }}</td>
+        <td>
+          <button class="danger" (click)="removeSubscriber(s._id)">
+            Remove
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div
+    *ngIf="!loading && !error && subscribers.length === 0"
+    class="status"
+  >
+    No subscribers yet.
+  </div>
+</div>

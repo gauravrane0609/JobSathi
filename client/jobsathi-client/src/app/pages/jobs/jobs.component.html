@@ -1,0 +1,80 @@
+<div class="jobs-page">
+  <!-- Page Header -->
+  <div class="jobs-header">
+    <h1>Government Jobs</h1>
+    <p>Latest verified Sarkari Naukri updates</p>
+  </div>
+
+  <!-- Loading -->
+  <div *ngIf="loading" class="loading">
+    Loading government jobs...
+  </div>
+
+  <!-- Empty -->
+  <div *ngIf="!loading && jobs.length === 0" class="empty">
+    No jobs available right now.
+  </div>
+
+  <!-- Filters -->
+  <div class="job-list-wrap">
+    <!-- Category Filter -->
+    <!-- <div class="category-chips">
+      <button
+        *ngFor="let c of categories"
+        (click)="selectCategory(c)"
+        [class.active]="selectedCategory === c"
+      >
+        {{ c }}
+      </button>
+    </div> -->
+
+    <!-- Search Bar -->
+    <div class="jobs-search">
+      <input
+        type="text"
+        class="search-input"
+        placeholder="Search by title / organization / It will Search automatically"
+        [(ngModel)]="searchKeyword"
+      />
+      <input
+        type="text"
+        class="search-input"
+        placeholder="Search by location / It will Search automatically"
+        [(ngModel)]="searchLocation"
+      />
+    </div>
+
+    <!-- Job List -->
+    <div class="job-list">
+                <app-job-card
+            *ngFor="let job of paginatedJobs"
+            [job]="job"
+            [compact]="false"
+          ></app-job-card>
+    </div>
+    <div class="pagination" *ngIf="totalPages > 1">
+  <button
+    (click)="goToPage(currentPage - 1)"
+    [disabled]="currentPage === 1"
+  >
+    « Prev
+  </button>
+
+  <button
+    *ngFor="let p of [].constructor(totalPages); let i = index"
+    (click)="goToPage(i + 1)"
+    [class.active]="currentPage === i + 1"
+  >
+    {{ i + 1 }}
+  </button>
+
+  <button
+    (click)="goToPage(currentPage + 1)"
+    [disabled]="currentPage === totalPages"
+  >
+    Next »
+  </button>
+</div>
+
+  </div>
+</div>

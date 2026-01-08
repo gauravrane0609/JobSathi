@@ -1,0 +1,76 @@
+<div class="dashboard">
+  <!-- ===== HEADER ===== -->
+  <header class="dashboard-header">
+    <h1>Admin Dashboard</h1>
+    <button (click)="logout()" class="logout-btn">Logout</button>
+  </header>
+
+  <!-- ===== QUICK STATS ===== -->
+  <section class="stats" *ngIf="!loading">
+    <div class="stat-card">
+      <h3>{{ stats.totalJobs }}</h3>
+      <p>Total Jobs</p>
+    </div>
+
+    <div class="stat-card">
+      <h3>{{ stats.totalBanners }}</h3>
+      <p>Active Banners</p>
+    </div>
+
+    <div class="stat-card">
+      <h3>{{ stats.totalCategories }}</h3>
+      <p>Categories</p>
+    </div>
+
+    <div class="stat-card">
+      <h3>{{ stats.totalSubscribers }}</h3>
+      <p>Subscribers</p>
+    </div>
+  </section>
+
+  <!-- ===== LOADING STATE ===== -->
+  <section class="stats" *ngIf="loading">
+    <div class="stat-card skeleton" *ngFor="let i of [1, 2, 3, 4]"></div>
+  </section>
+
+  <!-- ===== MANAGEMENT SECTIONS ===== -->
+  <section class="cards">
+    <div class="action-card">
+      <h3>Manage Jobs</h3>
+      <p>Add, update, delete government jobs</p>
+      <button routerLink="/admin/jobs">Open</button>
+    </div>
+
+    <div class="action-card">
+      <h3>Manage Banners</h3>
+      <p>Upload vacancy posters</p>
+      <button routerLink="/admin/banners">Open</button>
+    </div>
+
+    <!-- Manage Categories removed per request -->
+
+    <div class="action-card">
+      <h3>Results</h3>
+      <p>Exam result updates</p>
+      <button routerLink="/admin/results">Open</button>
+    </div>
+
+    <div class="action-card">
+      <h3>Admit Cards</h3>
+      <p>Hall ticket links</p>
+      <button routerLink="/admin/admit-cards">Open</button>
+    </div>
+
+    <div class="action-card">
+      <h3>Syllabus</h3>
+      <p>Exam syllabus PDFs</p>
+      <button routerLink="/admin/syllabus">Open</button>
+    </div>
+
+    <div class="action-card wide">
+      <h3>Subscribers</h3>
+      <p>View subscribed email users</p>
+      <button routerLink="/admin/subscribers">Open</button>
+    </div>
+  </section>
+</div>

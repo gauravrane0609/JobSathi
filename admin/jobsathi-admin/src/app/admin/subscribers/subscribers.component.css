@@ -1,0 +1,86 @@
+.subscribers-page {
+  padding: 20px;
+  max-width: 900px;
+  margin: auto;
+}
+
+h2 {
+  margin-bottom: 16px;
+  color: #0d47a1;
+}
+
+.status {
+  padding: 12px;
+  color: #555;
+}
+
+.error {
+  color: #d32f2f;
+  padding: 12px 0;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #fff;
+}
+
+th,
+td {
+  padding: 12px;
+  border-bottom: 1px solid #e0e0e0;
+  text-align: left;
+}
+
+th {
+  background: #f5f7fb;
+  font-weight: 600;
+}
+
+tr:hover {
+  background: #f9fbff;
+}
+
+button {
+  padding: 6px 10px;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+}
+
+button.danger {
+  background: #d32f2f;
+  color: #fff;
+}
+
+button.danger:hover {
+  background: #b71c1c;
+}
+
+/* MOBILE */
+@media (max-width: 600px) {
+  table,
+  thead,
+  tbody,
+  th,
+  td,
+  tr {
+    display: block;
+  }
+
+  tr {
+    margin-bottom: 12px;
+    border: 1px solid #e0e0e0;
+    padding: 10px;
+    border-radius: 6px;
+  }
+
+  th {
+    display: none;
+  }
+
+  td {
+    border: none;
+    padding: 6px 0;
+  }
+}

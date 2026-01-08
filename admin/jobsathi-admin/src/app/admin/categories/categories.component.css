@@ -1,0 +1,101 @@
+/* ===============================
+   CATEGORY MANAGEMENT
+================================ */
+
+.admin-page {
+  padding: 20px;
+  background: #f5f7fb;
+  min-height: 100vh;
+}
+
+/* HEADING */
+.admin-page h2 {
+  margin-bottom: 18px;
+  font-size: 22px;
+  color: #1a237e;
+}
+
+/* FORM */
+.category-form {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 20px;
+  max-width: 420px;
+}
+
+.category-form input {
+  flex: 1;
+  padding: 10px 14px;
+  border-radius: 6px;
+  border: 1px solid #cfd8dc;
+  font-size: 14px;
+  outline: none;
+  transition: border 0.2s ease;
+}
+
+.category-form input:focus {
+  border-color: #1a73e8;
+}
+
+/* ADD BUTTON */
+.category-form button {
+  background: #1a73e8;
+  color: #ffffff;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 6px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background 0.25s ease, transform 0.15s ease;
+}
+
+.category-form button:hover {
+  background: #0d47a1;
+  transform: translateY(-1px);
+}
+
+/* CATEGORY LIST */
+.category-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  max-width: 420px;
+}
+
+.category-list li {
+  background: #ffffff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 14px;
+  border-radius: 6px;
+  margin-bottom: 10px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.category-list li:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+/* DELETE BUTTON */
+.category-list button {
+  background: transparent;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+  color: #e53935;
+  transition: transform 0.15s ease;
+}
+
+.category-list button:hover {
+  transform: scale(1.15);
+}
+
+/* MOBILE */
+@media (max-width: 600px) {
+  .category-form {
+    flex-direction: column;
+  }
+}

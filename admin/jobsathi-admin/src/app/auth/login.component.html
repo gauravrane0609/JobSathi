@@ -1,0 +1,90 @@
+<div class="login-page">
+  <div class="login-card">
+
+    <!-- BRAND -->
+    <div class="brand">
+      <div class="logo">JS</div>
+      <h1>JobSathi</h1>
+      <p class="subtitle">Admin Panel</p>
+    </div>
+
+    <!-- LOGIN FORM -->
+    <form (submit)="submit($event)" class="login-form">
+      <div class="field">
+        <input
+              type="email"
+              placeholder="Admin Email"
+              [(ngModel)]="email"
+              name="email"
+              required
+            />
+      </div>
+
+      <div class="field">
+        <input
+          type="password"
+          placeholder="Password"
+          [(ngModel)]="password"
+          name="password"
+          required
+        />
+      </div>
+
+      <div class="form-options">
+        <label class="remember">
+          <input type="checkbox" />
+          <span>Remember me</span>
+        </label>
+
+        <a
+          href="#"
+          class="forgot"
+          (click)="openForgot(); $event.preventDefault()"
+        >
+          Forgot password?
+        </a>
+      </div>
+
+      <button type="submit" [disabled]="loading">
+        {{ loading ? 'Signing in…' : 'Login' }}
+      </button>
+    </form>
+
+    <div class="error" *ngIf="error">{{ error }}</div>
+  </div>
+
+  <!-- FORGOT PASSWORD MODAL -->
+  <div class="modal-backdrop" *ngIf="showForgotModal">
+    <div class="modal">
+      <h3>Reset Password</h3>
+
+      <p *ngIf="!resetSent">
+        Enter your admin email or username to receive reset instructions.
+      </p>
+
+      <p class="success" *ngIf="resetSent">
+        ✅ If this account exists, reset instructions have been sent.
+      </p>
+
+      <input
+        *ngIf="!resetSent"
+        type="text"
+        placeholder="Admin email or username"
+        [(ngModel)]="resetEmail"
+        name="resetEmail"
+      />
+
+      <div class="modal-actions">
+        <button class="ghost" (click)="closeForgot()">Cancel</button>
+        <button
+          *ngIf="!resetSent"
+          (click)="sendReset()"
+          [disabled]="!resetEmail"
+        >
+          Send
+        </button>
+        <button *ngIf="resetSent" (click)="closeForgot()">Close</button>
+      </div>
+    </div>
+  </div>
+</div>

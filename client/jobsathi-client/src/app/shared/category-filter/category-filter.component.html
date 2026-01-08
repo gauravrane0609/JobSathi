@@ -1,0 +1,9 @@
+<div class="category-filter">
+  <button
+    *ngFor="let c of categories"
+    (click)="pick(c)"
+    [class.active]="c === selected"
+  >
+    {{ c }}
+  </button>
+</div>

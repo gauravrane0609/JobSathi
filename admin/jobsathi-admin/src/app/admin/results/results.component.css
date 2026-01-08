@@ -1,0 +1,42 @@
+.admin-panel {
+  padding: 12px;
+}
+.form-card {
+  background: #fff;
+  padding: 12px;
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.06);
+  margin-bottom: 16px;
+}
+.form-card input,
+.form-card select {
+  display: block;
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 8px;
+}
+.form-card .file input {
+  display: block;
+}
+.list .card {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  border-radius: 6px;
+  background: #fff;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
+  margin-bottom: 8px;
+}
+.list .card .meta h4 {
+  margin: 0;
+  color: #0b5ed7;
+}
+.actions button {
+  margin-left: 8px;
+}
+@media (min-width: 768px) {
+  .list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+}

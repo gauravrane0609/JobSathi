@@ -1,0 +1,144 @@
+/* ================= PAGE ================= */
+
+.jobs-page {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 24px 16px 40px;
+}
+
+/* ================= HEADER ================= */
+
+.jobs-header {
+  text-align: center;
+  margin-bottom: 22px;
+}
+
+.jobs-header h1 {
+  font-size: 26px;
+  font-weight: 800;
+  color: #0d47a1;
+  margin-bottom: 6px;
+}
+
+.jobs-header p {
+  font-size: 14px;
+  color: #556;
+}
+
+/* ================= STATES ================= */
+
+.loading,
+.empty {
+  text-align: center;
+  font-size: 15px;
+  padding: 36px 0;
+  color: #666;
+}
+
+/* ================= FILTERS ================= */
+
+.job-list-wrap {
+  margin-top: 12px;
+}
+
+/* Category chips */
+.category-chips {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 14px;
+}
+
+.category-chips button {
+  padding: 6px 14px;
+  border-radius: 999px;
+  border: 1px solid #e5e7eb;
+  background: #f8fafc;
+  color: #334155;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.category-chips button:hover {
+  background: #eef2ff;
+}
+
+.category-chips button.active {
+  background: #0d47a1;
+  color: #fff;
+  border-color: #0d47a1;
+}
+
+/* ================= SEARCH ================= */
+
+.jobs-search {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 18px;
+}
+
+.search-input {
+  flex: 1;
+  height: 44px;
+  padding: 0 14px;
+  border-radius: 10px;
+  border: 1px solid #e5e7eb;
+  font-size: 14px;
+  background: #fff;
+}
+
+.search-input:focus {
+  outline: none;
+  border-color: #0d47a1;
+  box-shadow: 0 0 0 2px rgba(13, 71, 161, 0.08);
+}
+
+/* ================= JOB LIST ================= */
+
+.job-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+/* ================= MOBILE ================= */
+
+@media (max-width: 768px) {
+  .jobs-search {
+    flex-direction: column;
+  }
+
+  .search-input {
+    width: 100%;
+  }
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+  margin: 24px 0;
+  flex-wrap: wrap;
+}
+
+.pagination button {
+  padding: 6px 12px;
+  border: 1px solid #cfd8dc;
+  background: #fff;
+  cursor: pointer;
+  font-size: 13px;
+  border-radius: 6px;
+}
+
+.pagination button.active {
+  background: #0d47a1;
+  color: #fff;
+  border-color: #0d47a1;
+}
+
+.pagination button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}

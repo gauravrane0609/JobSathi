@@ -1,0 +1,50 @@
+<div class="page">
+  <div class="page-header">
+    <h1>Latest Results</h1>
+    <p>Government exam results & scorecards</p>
+  </div>
+
+  <div class="notice">📢 Results are updated daily from official sources.</div>
+  <app-category-filter
+    [categories]="categories"
+    [(selected)]="selectedCategory"
+    (selectedChange)="applyFilters()"
+  ></app-category-filter>
+  <div class="controls">
+    <input
+      placeholder="Search by exam name"
+      [(ngModel)]="search"
+      (input)="applyFilters()"
+    />
+  </div>
+  <app-loading-skeleton *ngIf="loading"></app-loading-skeleton>
+
+  <app-empty-state
+    *ngIf="!loading && visibleResults.length === 0"
+    message="No results available"
+  ></app-empty-state>
+
+  <div class="card-grid">
+    <div class="card" *ngFor="let r of visibleResults">
+      <h3>{{ r.title || r.examName }}</h3>
+      <p>{{ r.examName }}</p>
+
+      <div class="meta">
+        <span>📅 {{ r.resultDate | date }}</span>
+        <div class="actions">
+          <a [href]="r.pdfUrl" target="_blank" class="btn">View</a>
+          <app-share-buttons
+            [title]="r.title || r.examName"
+            [url]="r.pdfUrl || r.officialLink"
+          ></app-share-buttons>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    class="load-more"
+    *ngIf="!loading && visibleResults.length < publishedCount"
+  >
+    <button (click)="loadMore()">Load more</button>
+  </div>
+</div>

@@ -1,0 +1,36 @@
+<div class="admin-panel">
+  <h2>Admit Cards</h2>
+  <div class="form-card">
+    <h3>{{ editing ? "Edit" : "Add" }}</h3>
+    <input [(ngModel)]="form.title" placeholder="Title" />
+    <input [(ngModel)]="form.examName" placeholder="Exam Name" />
+    <input [(ngModel)]="form.organization" placeholder="Organization" />
+    <select [(ngModel)]="form.category">
+      <option value="">Category</option>
+      <option *ngFor="let c of categories" [value]="c">{{ c }}</option>
+    </select>
+    <input type="date" [(ngModel)]="form.admitCardDate" />
+    <textarea
+      [(ngModel)]="form.instructions"
+      placeholder="Instructions"
+    ></textarea>
+    <label>PDF / Link <input type="file" (change)="pickFile($event)" /></label>
+    <div class="actions">
+      <button (click)="submit()">{{ editing ? "Update" : "Create" }}</button>
+      <button (click)="reset()">Reset</button>
+    </div>
+  </div>
+
+  <div class="list">
+    <div *ngFor="let it of items" class="card">
+      <div>
+        <h4>{{ it.title }}</h4>
+        <div class="sub">{{ it.organization }} — {{ it.category }}</div>
+      </div>
+      <div class="actions">
+        <button (click)="edit(it)">Edit</button
+        ><button (click)="remove(it._id)">Delete</button>
+      </div>
+    </div>
+  </div>
+</div>

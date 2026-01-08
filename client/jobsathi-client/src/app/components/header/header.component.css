@@ -1,0 +1,102 @@
+/* ================= HEADER ================= */
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: #0d47a1;
+  color: #fff;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 12px 20px;
+}
+
+/* Logo */
+.logo {
+  font-size: 20px;
+  font-weight: 700;
+  color: #fff;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+/* ================= NAV (DESKTOP) ================= */
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+}
+
+.nav a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 15px;
+  white-space: nowrap;
+}
+
+.nav a:hover {
+  text-decoration: underline;
+}
+
+/* ================= HAMBURGER ================= */
+.menu-icon {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+}
+
+.menu-icon span {
+  height: 3px;
+  width: 26px;
+  background: #fff;
+  margin: 4px 0;
+  border-radius: 2px;
+}
+
+/* hide checkbox */
+#menu-toggle {
+  display: none;
+}
+
+/* ================= MOBILE ================= */
+@media (max-width: 768px) {
+  /* show hamburger on right */
+  .menu-icon {
+    display: flex;
+    margin-left: auto;
+    
+  }
+
+  /* hide desktop nav */
+  .nav {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+
+    background: #0d47a1;
+
+    flex-direction: column;
+    align-items: flex-start;
+
+    max-height: 0;
+    overflow: hidden;
+
+    transition: max-height 0.35s ease;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+  }
+
+  .nav a {
+    width: 100%;
+    padding: 14px 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+  }
+
+  /* when menu opens */
+  #menu-toggle:checked + .menu-icon + .nav {
+    max-height: 300px;
+  }
+}

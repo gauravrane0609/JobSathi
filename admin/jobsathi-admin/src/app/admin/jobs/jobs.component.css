@@ -1,0 +1,41 @@
+.admin-page {
+  padding: 20px;
+}
+
+.job-form {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.job-form input {
+  padding: 8px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+.job-form button {
+  padding: 10px;
+  border-radius: 6px;
+  background: #0d47a1;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+
+.jobs-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.jobs-table th,
+.jobs-table td {
+  padding: 10px;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.danger {
+  background: #c62828;
+  color: white;
+}

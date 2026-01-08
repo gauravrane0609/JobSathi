@@ -1,0 +1,42 @@
+:host {
+  display: block;
+}
+.admin-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 20px;
+  background: #0b3b66;
+  color: #fff;
+}
+.admin-header .brand {
+  font-weight: 700;
+  font-size: 18px;
+}
+.admin-header .header-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.admin-header .search input {
+  padding: 6px 10px;
+  border-radius: 6px;
+  border: none;
+}
+.admin-header .avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 18px;
+  background: #fff;
+  color: #0b3b66;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+}
+
+@media (max-width: 720px) {
+  .admin-header .search {
+    display: none;
+  }
+}

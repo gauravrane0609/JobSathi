@@ -1,0 +1,55 @@
+<div class="admin-page">
+
+  <h2>Manage Categories</h2>
+
+  <!-- ADD CATEGORY -->
+  <div class="category-form">
+    <input
+      type="text"
+      placeholder="Enter new category name"
+      [(ngModel)]="name"
+      name="name"
+    />
+    <button (click)="add()">Add Category</button>
+  </div>
+
+  <!-- CATEGORY LIST -->
+  <ul class="category-list">
+    <li *ngFor="let c of categories">
+
+      <!-- VIEW MODE -->
+      <span *ngIf="editId !== c._id">
+        {{ c.name }}
+        <small *ngIf="!c.active">(disabled)</small>
+      </span>
+
+      <!-- EDIT MODE -->
+      <input
+        *ngIf="editId === c._id"
+        [(ngModel)]="editName"
+        name="editName"
+      />
+
+      <!-- ACTIONS -->
+      <div class="actions">
+        <button (click)="toggle(c)">
+          {{ c.active ? 'Disable' : 'Enable' }}
+        </button>
+
+        <button *ngIf="editId !== c._id" (click)="edit(c)">
+          Edit
+        </button>
+
+        <button *ngIf="editId === c._id" (click)="save(c)">
+          Save
+        </button>
+
+        <button *ngIf="editId === c._id" (click)="cancel()">
+          Cancel
+        </button>
+      </div>
+
+    </li>
+  </ul>
+
+</div>

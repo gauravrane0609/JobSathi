@@ -1,0 +1,40 @@
+<article class="job-card" role="article" [class.compact]="compact">
+  <div class="job-card-top">
+    <div class="job-avatar" aria-hidden="true">🏛️</div>
+
+    <div class="job-main">
+      <div class="job-title">
+        <a (click)="openDetail()" class="job-title-link">{{
+          job?.title || "Government Job Title"
+        }}</a>
+      </div>
+
+      <div class="job-org">{{ job?.organization || "State/Ministry" }}</div>
+
+      <div class="job-qualification" *ngIf="job?.qualification">
+        {{ job?.qualification }}
+      </div>
+
+      <div class="job-meta-row">
+        <span class="job-location">{{
+          job?.location || "Anywhere, India"
+        }}</span>
+        <span class="separator">•</span>
+        <span class="job-type">{{ job?.type || "Permanent" }}</span>
+      </div>
+    </div>
+
+    <div class="job-side">
+      <div class="job-deadline">
+        <div class="label">Last Date</div>
+        <strong>{{ job?.lastDate | date : "dd MMM yyyy" }}</strong>
+      </div>
+
+      <div class="job-actions">
+        <button class="details" (click)="openDetail()">Details</button>
+        <button class="apply" (click)="apply()">Apply</button>
+        <button class="share" (click)="share()">Share</button>
+      </div>
+    </div>
+  </div>
+</article>
